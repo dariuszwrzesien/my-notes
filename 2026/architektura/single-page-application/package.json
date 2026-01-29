@@ -1,0 +1,12 @@
+{
+  "name": "single-page-application",
+  "version": "1.0.0",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "npx live-server ."
+  },
+  "devDependencies": {
+    "live-server": "1.2.1"
+  }
+}
