@@ -1,12 +1,13 @@
 {
   "name": "single-page-application",
   "version": "1.0.0",
-  "main": "index.html",
   "type": "module",
   "scripts": {
-    "dev": "npx live-server ."
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "live-server": "1.2.1"
+    "vite": "^6.0.0"
   }
 }

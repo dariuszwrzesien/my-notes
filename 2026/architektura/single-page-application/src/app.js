@@ -39,6 +39,7 @@ function renderView(path) {
 }
 
 function onRouteChange(path) {
+  renderHeader();
   renderView(path);
 }
 

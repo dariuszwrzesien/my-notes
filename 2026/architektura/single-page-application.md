@@ -4,25 +4,43 @@ Prosty szkielet Single Page Application w czystym JavaScript (bez frameworków).
 
 ## Uruchomienie
 
-Otwórz `index.html` w przeglądarce (np. przez rozszerzenie Live Server w VS Code) albo uruchom dowolny serwer statyczny w katalogu projektu:
+Projekt używa **Vite** jako bundlera. W katalogu projektu:
 
 ```bash
-npx serve .
-# lub: python -m http.server 8080
+npm install
+npm run dev
+```
+
+Serwer deweloperski (z HMR) uruchomi się zwykle pod `http://localhost:5173`. Produkcyjna wersja:
+
+```bash
+npm run build    # wynik w katalogu dist/
+npm run preview  # podgląd zbudowanej wersji
 ```
 
 Nawigacja: **Home** | **O nas** | **Kontakt**. Adres zmienia się na `#/`, `#/about`, `#/contact` – bez przeładowania strony.
 
+## Vite – zalety używania bundlera
+
+| Zaleta                        | Opis                                                                                                                                                                          |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Szybki cold start**         | Vite nie bundluje całej aplikacji przy starcie. Używa natywnego ESM w przeglądarce – serwer tylko serwuje pliki, a transformacja (np. TypeScript, JSX) odbywa się na żądanie. |
+| **Natychmiastowe HMR**        | Hot Module Replacement aktualizuje zmodyfikowane moduły bez pełnego przeładowania strony; stan aplikacji można zachować.                                                      |
+| **Optymalizacja produkcyjna** | `vite build` używa Rollupa: drzewo zależności, code splitting, minifikacja – mniejsze i szybsze paczki do wdrożenia.                                                          |
+| **Konfiguracja „zero”**       | Działa od razu z ES modułami i `index.html` jako punktem wejścia; `vite.config.js` jest opcjonalny.                                                                           |
+| **Środowisko deweloperskie**  | Wbudowany serwer z obsługą TypeScript, JSX, CSS (w tym preprocesorów), JSON, assetów – bez osobnych narzędzi.                                                                 |
+| **Dobre DX**                  | Szybkie odświeżanie, czytelne stack trace’y, wsparcie dla zmiennych środowiskowych (`.env`) i trybu preview po buildzie.                                                      |
+
 ## Zalety SPA (pokazane w tym szkielecie)
 
-| Zaleta                     | Jak to widać w projekcie                                                                          |
-| -------------------------- | ------------------------------------------------------------------------------------------------- |
-| **Jedno ładowanie strony** | Jeden plik `index.html` – dalsza „nawigacja” to tylko zamiana treści w JS.                        |
-| **Brak przeładowań**       | Klik w link zmienia tylko zawartość `<main>`, cała strona się nie odświeża.                       |
-| **Współdzielony layout**   | Header z nawigacją jest jeden; przy każdej „stronie” tylko podmieniany jest fragment treści.      |
-| **Szybsze odczucie**       | Przejście między widokami jest natychmiastowe, bez bielenia ekranu i ponownego ładowania zasobów. |
-| **Adres w URL**            | Hash (`#/about`) pozwala wracać do konkretnego widoku (np. zakładka, odświeżenie).                |
-| **Prosty stack**           | Vanilla JS + jeden HTML – brak builda, brak zewnętrznych zależności.                              |
+| Zaleta                     | Jak to widać w projekcie                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Jedno ładowanie strony** | Jeden plik `index.html` – dalsza „nawigacja” to tylko zamiana treści w JS.                             |
+| **Brak przeładowań**       | Klik w link zmienia tylko zawartość `<main>`, cała strona się nie odświeża.                            |
+| **Współdzielony layout**   | Header z nawigacją jest jeden; przy każdej „stronie” tylko podmieniany jest fragment treści.           |
+| **Szybsze odczucie**       | Przejście między widokami jest natychmiastowe, bez bielenia ekranu i ponownego ładowania zasobów.      |
+| **Adres w URL**            | Hash (`#/about`) pozwala wracać do konkretnego widoku (np. zakładka, odświeżenie).                     |
+| **Prosty stack**           | Vanilla JS + jeden HTML; Vite daje szybki dev server i zoptymalizowany build bez ciężkiego frameworka. |
 
 ## Wady SPA
 
@@ -39,9 +57,9 @@ Nawigacja: **Home** | **O nas** | **Kontakt**. Adres zmienia się na `#/`, `#/ab
 
 ```
 spa/
-├── index.html          # Jedyny plik HTML – punkt wejścia
+├── index.html          # Jedyny plik HTML – punkt wejścia (Vite go czyta z roota)
+├── vite.config.js      # Opcjonalna konfiguracja Vite
 ├── styles.css          # Style globalne
-├── README.md
 └── src/
     ├── app.js          # Inicjalizacja, rejestracja widoków, obsługa routera
     ├── router.js       # Router hash-based (#/ścieżka)
