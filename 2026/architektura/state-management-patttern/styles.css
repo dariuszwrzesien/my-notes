@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #1a1a1a;
+  background: #f5f5f5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header – współdzielony na wszystkich „stronach” */
+.app-header {
+  background: #2d3748;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-header nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.app-header a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.app-header a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app-header a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Główna treść – tylko ten obszar się zmienia */
+.app-main {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app-main h1 {
+  margin-top: 0;
+  color: #2d3748;
+  font-size: 1.75rem;
+}
+
+.app-main p {
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* Delikatna animacja wejścia widoku */
+.app-main .view-enter {
+  animation: viewEnter 0.25s ease-out;
+}
+
+@keyframes viewEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Widok Licznik */
+.view-counter .counter-desc,
+.view-result .result-desc {
+  margin-bottom: 1.5rem;
+}
+
+.view-counter .counter-box,
+.view-result .result-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.view-counter .counter-value {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  min-height: 1.2em;
+}
+
+.view-counter .counter-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.view-counter .btn,
+.view-result .link-counter,
+.view-counter .link-result {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  text-decoration: none;
+  border: none;
+  font-family: inherit;
+}
+
+.view-counter .btn-increment {
+  background: #2d3748;
+  color: #fff;
+}
+
+.view-counter .btn-increment:hover {
+  background: #1a202c;
+}
+
+.view-counter .btn-decrement {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.view-counter .btn-decrement:hover {
+  background: #cbd5e0;
+}
+
+.view-counter .link-result,
+.view-result .link-counter {
+  color: #3182ce;
+}
+
+.view-counter .link-result:hover,
+.view-result .link-counter:hover {
+  text-decoration: underline;
+}
+
+/* Widok Rezultat */
+.view-result .result-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+}
+
+.view-result .result-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
