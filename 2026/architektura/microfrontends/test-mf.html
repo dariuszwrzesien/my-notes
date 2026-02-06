@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Module Federation</title>
+  </head>
+  <body>
+    <h1>Test Module Federation</h1>
+    <div id="result">Ładowanie...</div>
+
+    <script type="module">
+      async function testModuleFederation() {
+        const resultDiv = document.getElementById("result");
+
+        try {
+          resultDiv.innerHTML = "1. Próba załadowania remoteEntry.js...<br>";
+
+          // Load remote entry
+          const remoteEntry =
+            await import("http://localhost:5001/assets/remoteEntry.js");
+          resultDiv.innerHTML += "2. remoteEntry.js załadowany ✓<br>";
+          resultDiv.innerHTML +=
+            "3. Dostępne klucze: " +
+            Object.keys(remoteEntry).join(", ") +
+            "<br>";
+
+          // Try to load tokens
+          resultDiv.innerHTML += "4. Próba załadowania tokens...<br>";
+          const tokensModule =
+            await import("http://localhost:5001/assets/__federation_expose_Tokens-C3oa3Tpf.js");
+          resultDiv.innerHTML += "5. Tokens załadowane ✓<br>";
+          resultDiv.innerHTML +=
+            "6. Colors: " +
+            JSON.stringify(tokensModule.colors).substring(0, 100) +
+            "...<br>";
+
+          resultDiv.innerHTML +=
+            '<br><strong style="color: green;">✓ Module Federation działa poprawnie!</strong>';
+        } catch (error) {
+          resultDiv.innerHTML +=
+            '<br><strong style="color: red;">❌ Błąd: ' +
+            error.message +
+            "</strong><br>";
+          resultDiv.innerHTML += "<pre>" + error.stack + "</pre>";
+          console.error("Test failed:", error);
+        }
+      }
+
+      testModuleFederation();
+    </script>
+  </body>
+</html>
