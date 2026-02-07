@@ -67,10 +67,10 @@ run_preview() {
         --prefix "[{name}]" \
         --prefix-colors "cyan,green,yellow,magenta" \
         --kill-others \
-        "cd design-system && npm run preview" \
-        "cd host && npm run preview" \
-        "cd mfe-products && npm run preview" \
-        "cd mfe-profile && npm run preview"
+        "cd design-system && npm run preview -- --host" \
+        "cd host && npm run preview -- --host" \
+        "cd mfe-products && npm run preview -- --host" \
+        "cd mfe-profile && npm run preview -- --host"
 }
 
 echo "🎨 Design System  → http://localhost:5001"

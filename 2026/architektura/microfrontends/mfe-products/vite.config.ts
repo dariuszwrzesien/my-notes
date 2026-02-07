@@ -53,5 +53,11 @@ export default defineConfig({
     port: 5002,
     strictPort: true,
     cors: true,
+    host: true, // Expose to all network interfaces
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "*",
+    },
   },
 });
