@@ -1,0 +1,21 @@
+{
+  "name": "websocket-backend",
+  "version": "1.0.0",
+  "description": "Edukacyjny serwer WebSocket",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "websocket",
+    "education",
+    "real-time"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}

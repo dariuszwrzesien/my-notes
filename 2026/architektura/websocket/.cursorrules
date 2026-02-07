@@ -1,0 +1,100 @@
+# WebSocket Educational Project - Cursor Rules
+
+## Project Overview
+
+This is an educational WebSocket application designed for learning purposes.
+Stack: Node.js + ws (backend) | React + Vite (frontend) | Pure WebSocket
+
+## Key Principles
+
+### 1. Code Philosophy
+
+- **Simplicity over abstraction** - No unnecessary complexity
+- **Education first** - Code serves as teaching material
+- **Comments are mini-tutorials** - ~40% of code should be comments
+- **Explicit over implicit** - Show how things work "under the hood"
+
+### 2. Code Style
+
+- Use descriptive variable names
+- Add explanatory comments for every concept
+- Show ❌ BAD vs ✅ GOOD examples in comments
+- Explain WHY, not just WHAT
+
+### 3. What NOT to do
+
+- ❌ Don't add abstractions or complex patterns
+- ❌ Don't add production-grade features (auth, rate limiting, etc.)
+- ❌ Don't use Socket.io (we want pure WebSocket)
+- ❌ Don't remove or reduce comments
+
+### 4. File Structure
+
+```
+backend/server.js       - Single file, ~230 lines, heavily commented
+frontend/src/hooks/useWebSocket.js - Custom hook with all WS logic
+frontend/src/App.jsx    - UI component only, clean separation
+```
+
+### 5. When editing code
+
+- Maintain ~40% comment ratio
+- Keep code simple and flat
+- Use console.log generously (for learning/debugging)
+- Every concept should be explained in comments
+
+### 6. Documentation
+
+- Keep documentation up to date with code changes
+- Add diagrams when explaining flow
+- Use real-world examples
+- Include troubleshooting tips
+
+## Common Patterns
+
+### WebSocket in React
+
+```javascript
+// ✅ GOOD - useRef for WebSocket
+const wsRef = useRef(null);
+
+// ❌ BAD - useState causes unnecessary re-renders
+const [ws, setWs] = useState(null);
+```
+
+### Cleanup
+
+```javascript
+// ✅ ALWAYS cleanup
+useEffect(() => {
+  const ws = new WebSocket(url);
+  return () => ws.close(); // CRITICAL!
+}, []);
+```
+
+### Broadcasting
+
+```javascript
+// ✅ Check readyState before sending
+wss.clients.forEach((client) => {
+  if (client.readyState === WebSocket.OPEN) {
+    client.send(data);
+  }
+});
+```
+
+## Files to NOT modify (structure)
+
+- Keep single file backend (server.js)
+- Keep single hook frontend (useWebSocket.js)
+- Maintain separation between logic (hook) and UI (component)
+
+## When asked to add features
+
+1. First check if it aligns with educational goals
+2. Keep it simple
+3. Add comprehensive comments
+4. Update documentation if needed
+5. Show both working example and potential pitfalls
+
+Remember: This is NOT production code. It's a learning tool! 🎓
